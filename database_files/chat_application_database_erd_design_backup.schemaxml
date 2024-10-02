@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="utf8mb4" collation="utf8mb4_general_ci">chatroom</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="messages" view="standard">
+<left>199</left>
+<top>57</top>
+<width>209</width>
+<height>146</height>
+<sql_create_table>CREATE TABLE `messages` (
+  `message_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `message` text DEFAULT NULL,
+  `message_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`message_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci</sql_create_table>
+</table>
+<table name="users" view="standard">
+<left>534</left>
+<top>74</top>
+<width>287</width>
+<height>248</height>
+<sql_create_table>CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(30) DEFAULT NULL,
+  `last_name` varchar(30) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `country` varchar(40) DEFAULT NULL,
+  `gender` enum('Male','Female') DEFAULT NULL,
+  `profile_image` text DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `is_online` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
